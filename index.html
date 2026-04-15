@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Md. Nahid Pervez | Environmental Engineering & AI/ML</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root {
+  --bg: #e8f3e4;
+  --surface: #ffffff;
+  --border: #cfe3c9;
+  --text: #1a1a1a;
+  --muted: #6b6860;
+  --accent: #2a5298;
+  --accent-light: #e8edf7;
+  --accent2: #1a7a5e;
+  --accent2-light: #e4f3ef;
+  --serif: 'Crimson Pro', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --nav-h: 58px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:16px;line-height:1.6}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(232,243,228,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.nav-brand{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-0.01em}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links a{display:block;padding:8px 14px;font-size:0.82rem;font-weight:400;color:var(--muted);text-decoration:none;letter-spacing:0.02em;border-radius:4px;transition:color .2s,background .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--accent-light)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--text);margin:5px 0;transition:.3s}
+@media(max-width:720px){
+  .nav-links{display:none;position:absolute;top:var(--nav-h);left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);flex-direction:column;padding:.5rem 0}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:10px 2rem;border-radius:0}
+  .hamburger{display:block}
+}
+
+/* LAYOUT */
+.page-section{display:none;max-width:940px;margin:0 auto;padding:3.5rem 2rem}
+.page-section.active{display:block}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:200px 1fr;gap:3rem;align-items:start}
+@media(max-width:640px){.about-grid{grid-template-columns:1fr}}
+.profile-col{text-align:center}
+.avatar-img{width:160px;height:160px;border-radius:50%;object-fit:cover;border:3px solid var(--border);background:var(--accent-light);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--serif);font-size:2.5rem;font-weight:300;color:var(--accent)}
+.profile-name-sm{font-family:var(--serif);font-size:1rem;font-weight:600;margin-bottom:.2rem}
+.profile-org{font-size:.8rem;color:var(--muted);line-height:1.4;margin-bottom:1rem}
+.profile-address{font-size:.78rem;color:var(--muted);line-height:1.7;margin-bottom:1rem;padding:1rem;background:var(--bg);border-radius:6px;text-align:left}
+.social-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:.5rem}
+.social-links a{width:32px;height:32px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.8rem;text-decoration:none;transition:background .2s,color .2s}
+.social-links a:hover{background:var(--accent);color:#fff}
+.about-main h1{font-family:var(--serif);font-size:2.2rem;font-weight:600;letter-spacing:-0.02em;margin-bottom:.3rem}
+.about-main .tagline{font-size:.9rem;color:var(--muted);margin-bottom:1.5rem}
+.about-bio p{font-family:var(--serif);font-size:1.05rem;color:#333;line-height:1.75;margin-bottom:1rem}
+.metrics-row{display:flex;gap:2rem;margin:1.5rem 0;flex-wrap:wrap}
+.metric{text-align:center}
+.metric-num{font-family:var(--serif);font-size:2rem;font-weight:600;color:var(--accent);line-height:1}
+.metric-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+
+/* SECTION TITLES */
+.sec-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:2px solid var(--accent);display:inline-block}
+
+/* NEWS */
+.news-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.news-table tr{border-bottom:1px solid var(--border)}
+.news-table td{padding:.6rem .5rem;vertical-align:top}
+.news-table td:first-child{color:var(--muted);white-space:nowrap;width:110px;font-size:.8rem;padding-top:.7rem}
+.news-badge{display:inline-block;padding:2px 8px;font-size:.7rem;border-radius:20px;font-weight:500}
+.nb-new{background:#fef3c7;color:#92400e}
+.nb-paper{background:var(--accent-light);color:var(--accent)}
+.nb-award{background:#fce7f3;color:#9d174d}
+.nb-conf{background:var(--accent2-light);color:var(--accent2)}
+
+/* PUBLICATIONS */
+.pub-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem}
+.filter-btn{padding:5px 14px;font-size:.8rem;border:1px solid var(--border);border-radius:20px;background:none;cursor:pointer;color:var(--muted);font-family:var(--sans);transition:.2s}
+.filter-btn:hover,.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.pub-year-group{margin-bottom:2rem}
+.pub-year-label{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--muted);margin-bottom:1rem;padding-left:.5rem;border-left:3px solid var(--accent)}
+.pub-item{display:grid;grid-template-columns:56px 1fr;gap:1rem;margin-bottom:1.2rem;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;transition:border-color .2s}
+.pub-item:hover{border-color:var(--accent)}
+.pub-num{font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--border);text-align:right;padding-top:2px}
+.pub-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:.2rem;line-height:1.35}
+.pub-authors{font-size:.83rem;color:var(--muted);margin-bottom:.2rem}
+.pub-authors strong{color:var(--text)}
+.pub-journal{font-size:.83rem;color:var(--accent2);font-style:italic;margin-bottom:.4rem}
+.pub-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:.4rem}
+.pub-link{padding:2px 10px;font-size:.75rem;border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--muted);transition:.2s}
+.pub-link:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.pub-badges{display:inline-flex;gap:5px;flex-wrap:wrap;margin-left:6px}
+.pb{padding:2px 8px;font-size:.72rem;border-radius:20px;font-weight:500}
+.pb-award{background:#fce7f3;color:#9d174d}
+.pb-cited{background:var(--accent-light);color:var(--accent)}
+.pb-top{background:#f0fdf4;color:#166534}
+.pb-hc{background:#fff7ed;color:#9a3412}
+
+/* CV / TIMELINE */
+.cv-section{margin-bottom:2.5rem}
+.cv-section h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin-bottom:1rem;color:var(--accent)}
+.timeline{position:relative;padding-left:1.5rem}
+.timeline::before{content:'';position:absolute;left:6px;top:4px;bottom:4px;width:1px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:1.2rem;padding:.9rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:8px}
+.tl-item::before{content:'';position:absolute;left:-1.19rem;top:1.1rem;width:8px;height:8px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.tl-role{font-weight:500;font-size:.95rem;margin-bottom:2px}
+.tl-org{font-size:.85rem;color:var(--accent2);margin-bottom:2px}
+.tl-date{font-size:.78rem;color:var(--muted)}
+.tl-desc{font-size:.83rem;color:var(--muted);margin-top:.4rem;line-height:1.5}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.skill-card h4{font-size:.85rem;font-weight:500;color:var(--accent);margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.05em}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{padding:3px 9px;font-size:.75rem;background:var(--bg);border:1px solid var(--border);border-radius:4px;color:var(--muted)}
+
+/* AWARDS */
+.awards-list{list-style:none}
+.award-item{display:flex;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--border);align-items:start}
+.award-item:last-child{border-bottom:none}
+.award-year{min-width:56px;font-size:.78rem;color:var(--muted);font-weight:500;padding-top:2px}
+.award-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px}
+.award-text{font-size:.9rem;line-height:1.4}
+.award-sub{font-size:.78rem;color:var(--muted);margin-top:2px}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:2rem}
+.contact-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.contact-card i{font-size:1rem;color:var(--accent);margin-bottom:.5rem}
+.contact-card .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.2rem}
+.contact-card .val{font-size:.9rem;font-weight:500;word-break:break-all}
+.contact-card a{color:var(--accent);text-decoration:none}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem;font-size:.78rem;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+footer a{color:var(--accent);text-decoration:none}
+
+/* CHIP INTERESTS */
+.interests{display:flex;flex-wrap:wrap;gap:6px;margin-top:.8rem}
+.interest-chip{padding:4px 12px;font-size:.78rem;background:var(--accent-light);color:var(--accent);border-radius:20px;font-weight:500}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .pub-item{grid-template-columns:1fr}
+  .pub-num{display:none}
+  .metrics-row{gap:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a class="nav-brand" href="#">Md. Nahid Pervez</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="showSection('about',this)" class="active">about</a></li>
+    <li><a href="#" onclick="showSection('publications',this)">publications</a></li>
+    <li><a href="#" onclick="showSection('cv',this)">CV</a></li>
+    <li><a href="#" onclick="showSection('awards',this)">awards</a></li>
+    <li><a href="#" onclick="showSection('contact',this)">contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about" class="page-section active">
+  <div class="about-grid">
+    <div class="profile-col">
+      <div class="avatar-img">MNP</div>
+      <div class="profile-name-sm">Md. Nahid Pervez, PhD</div>
+      <div class="profile-org">Postdoctoral Research Scholar<br>The Ohio State University</div>
+      <div class="profile-address">
+        <i class="fa fa-building" style="color:var(--accent);width:14px"></i> 470 Hitchcock Hall<br>
+        <i class="fa fa-map-marker-alt" style="color:var(--accent);width:14px"></i> 2070 Neil Avenue<br>
+        <i class="fa fa-city" style="color:var(--accent);width:14px"></i> Columbus, Ohio 43210<br>
+        <i class="fa fa-envelope" style="color:var(--accent);width:14px"></i> pervez.15@osu.edu
+      </div>
+      <div class="social-links">
+        <a href="mailto:pervez.15@osu.edu" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://scholar.google.com" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        <a href="https://www.researchgate.net" target="_blank" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+        <a href="https://orcid.org" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
+        <a href="https://github.com" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="about-main">
+      <h1>Md. Nahid Pervez</h1>
+      <div class="tagline">Environmental Engineering · Sustainable Materials · AI/ML · The Ohio State University</div>
+
+      <div class="about-bio">
+        <p>I am a Postdoctoral Research Scholar in the Department of Civil, Environmental, and Geodetic Engineering at The Ohio State University, where I work on the synthesis of reticular materials (MOFs and COFs) for the recovery of critical and rare earth elements from waste streams, including acid mine drainage.</p>
+        <p>My research sits at the intersection of <strong>advanced materials chemistry</strong>, <strong>wastewater treatment and resource recovery</strong>, and <strong>applied machine learning</strong>. I develop AI/ML frameworks — using ensemble methods such as ExtraTrees, XGBoost, and LightGBM — to accelerate the prediction and optimization of adsorbent performance across environmental contaminant systems including PFAS, heavy metals, and rare earth elements.</p>
+        <p>Previously, I was a Postdoctoral Research Associate at SUNY Albany, where I developed graphene, MOF, clay, and electrospun nanofiber-based materials for PFAS removal and destruction. I completed my PhD in Environmental Chemistry at the University of Salerno (Italy), with a visiting period at the Swedish Centre for Resource Recovery, University of Borås.</p>
+        <p>I am recognized as a <strong>Top 2% Scientist</strong> worldwide (Elsevier/Stanford, 2024) and received the <strong>2024 ACS ES&amp;T Water Best Paper Award</strong>. My work has generated over 5,380 citations with an h-index of 44.</p>
+      </div>
+
+      <div class="metrics-row">
+        <div class="metric"><div class="metric-num">5,380+</div><div class="metric-label">Citations</div></div>
+        <div class="metric"><div class="metric-num">44</div><div class="metric-label">h-index</div></div>
+        <div class="metric"><div class="metric-num">107</div><div class="metric-label">i10-index</div></div>
+        <div class="metric"><div class="metric-num">216</div><div class="metric-label">Peer Reviews</div></div>
+      </div>
+
+      <div class="interests">
+        <span class="interest-chip">MOF &amp; COF synthesis</span>
+        <span class="interest-chip">Rare earth element recovery</span>
+        <span class="interest-chip">PFAS remediation</span>
+        <span class="interest-chip">Wastewater treatment</span>
+        <span class="interest-chip">AI/ML for adsorption</span>
+        <span class="interest-chip">Membrane separation</span>
+        <span class="interest-chip">Circular economy</span>
+        <span class="interest-chip">Critical minerals</span>
+      </div>
+
+      <div style="margin-top:2.5rem">
+        <div class="sec-title">News</div>
+        <table class="news-table">
+          <tr>
+            <td>Apr 2026</td>
+            <td><span class="news-badge nb-conf">Conference</span> Two abstracts submitted to <strong>ACS Fall 2026</strong> in Chicago — REE recovery from acid mine drainage &amp; ML-guided MOF screening.</td>
+          </tr>
+          <tr>
+            <td>Mar 2026</td>
+            <td><span class="news-badge nb-paper">Paper</span> New paper published in <em>ACS Omega</em> — regenerable graphene nanoplatelet adsorbents for trace-level PFAS removal.</td>
+          </tr>
+          <tr>
+            <td>Feb 2026</td>
+            <td><span class="news-badge nb-paper">Paper</span> Corresponding author paper published in <em>ACS Applied Engineering Materials</em> — PVA-based electrospun nanofiber membrane for PFAS adsorption.</td>
+          </tr>
+          <tr>
+            <td>Dec 2025</td>
+            <td><span class="news-badge nb-award">Award</span> Received the <strong>2024 Best Paper Award</strong> from ACS ES&amp;T Water.</td>
+          </tr>
+          <tr>
+            <td>Nov 2025</td>
+            <td><span class="news-badge nb-new">New position</span> Joined The Ohio State University as Postdoctoral Research Scholar. Project: MOFs/COFs for critical mineral recovery.</td>
+          </tr>
+          <tr>
+            <td>Aug 2024</td>
+            <td><span class="news-badge nb-award">Award</span> Featured in the <strong>Top 2% Scientists</strong> list by Elsevier and Stanford University.</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PUBLICATIONS ═══════════════ -->
+<section id="publications" class="page-section">
+  <div class="sec-title">Publications</div>
+  <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.5rem">Total Citations: 5,380+ &nbsp;|&nbsp; h-index: 44 &nbsp;|&nbsp; i10-index: 107 &nbsp;|&nbsp; Updated: Apr 2026. Full list on <a href="https://scholar.google.com" target="_blank" style="color:var(--accent)">Google Scholar</a>.</p>
+
+  <div class="pub-filters">
+    <button class="filter-btn active" onclick="filterPubs('all',this)">All</button>
+    <button class="filter-btn" onclick="filterPubs('2026',this)">2026</button>
+    <button class="filter-btn" onclick="filterPubs('2025',this)">2025</button>
+    <button class="filter-btn" onclick="filterPubs('2024',this)">2024</button>
+    <button class="filter-btn" onclick="filterPubs('2023',this)">2023</button>
+    <button class="filter-btn" onclick="filterPubs('older',this)">2022 &amp; earlier</button>
+  </div>
+
+  <div id="pubList">
+
+  <div class="pub-year-group" data-year="2026">
+    <div class="pub-year-label">2026</div>
+
+    <div class="pub-item">
+      <div class="pub-num">1</div>
+      <div>
+        <div class="pub-title">In situ growth of polyindole within montmorillonite interlayer and subsequent efficient destruction of perfluorooctanoic acid <span class="pub-badges"><span class="pb pb-cited">Cited 1×</span></span></div>
+        <div class="pub-authors">Tian H, Tao X, Liu Z, <strong>Pervez MN</strong>, Teng B, Feng J, He A, Yu Q, Qian K, Yang X, Gu C</div>
+        <div class="pub-journal">Environmental Science &amp; Technology, 60 (2026), 6736–6746</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">2</div>
+      <div>
+        <div class="pub-title">Regenerable graphene nanoplatelet adsorbents for rapid and trace-level PFAS removal from water</div>
+        <div class="pub-authors"><strong>Pervez MN</strong>, Jiang T, Ilango AK, Yamini YK, Zhang Y, Zhang W, Efstathiadis H, Feldblyum JI, Yigit MV, Venkatesan AK, Liang Y</div>
+        <div class="pub-journal">ACS Omega, 11 (2026), 2902–2916</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">3</div>
+      <div>
+        <div class="pub-title">Fast adsorption of short- and long-chain per- and polyfluoroalkyl substances from water by chemically modified sawdust</div>
+        <div class="pub-authors">Bitaraf B, <strong>Pervez MN*</strong>, Jiang T, Ioanniti MM, Efstathiadis H, Yigit MV, Liang Y</div>
+        <div class="pub-journal">ACS ES&amp;T Water, 6 (2026), 873–883</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">4</div>
+      <div>
+        <div class="pub-title">Cationically modified PVA-based electrospun nanofiber membrane for adsorptive PFAS removal from water</div>
+        <div class="pub-authors"><strong>Pervez MN*</strong>, Jiang T, Li B, Bitaraf B, Ilango AK, Ioanniti MM, Schaeffer C, Efstathiadis H, Yigit MV, Liang Y</div>
+        <div class="pub-journal">ACS Applied Engineering Materials, 4 (2026), 93–106</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-year-group" data-year="2025">
+    <div class="pub-year-label">2025</div>
+
+    <div class="pub-item">
+      <div class="pub-num">5</div>
+      <div>
+        <div class="pub-title">PFAS in the textile industry: sources, fate, detection, and pathways toward sustainable remediation and regulation <span class="pub-badges"><span class="pb pb-cited">Cited 10×</span></span></div>
+        <div class="pub-authors"><strong>Pervez MN</strong>, Ilango AK, Jiang T, Talukder ME, Ehsan MN, Cai Y, Liang Y</div>
+        <div class="pub-journal">Chemical Engineering Journal, 522 (2025), 168183</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">6</div>
+      <div>
+        <div class="pub-title">Stabilizing per- and polyfluoroalkyl substances (PFAS) through amending an adsorbent to contaminated soil planted with alfalfa <span class="pub-badges"><span class="pb pb-cited">Cited 1×</span></span></div>
+        <div class="pub-authors">Jiang T, <strong>Pervez MN</strong>, Ilango AK, Liang Y</div>
+        <div class="pub-journal">Science of the Total Environment, 1000 (2025), 180430</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">7</div>
+      <div>
+        <div class="pub-title">Enhanced removal and destruction of PFAS mixtures by coupling magnetic modified clay and photoreductive degradation <span class="pub-badges"><span class="pb pb-cited">Cited 12×</span></span></div>
+        <div class="pub-authors">Jiang T, <strong>Pervez MN</strong>, Ilango AK, Liang Y</div>
+        <div class="pub-journal">Journal of Water Process Engineering, 69 (2025), 106733</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-year-group" data-year="2024">
+    <div class="pub-year-label">2024</div>
+
+    <div class="pub-item">
+      <div class="pub-num">8</div>
+      <div>
+        <div class="pub-title">Surface modification of graphene oxide for fast removal of PFAS mixtures from river water <span class="pub-badges"><span class="pb pb-award">Best Paper Award</span><span class="pb pb-cited">Cited 61×</span></span></div>
+        <div class="pub-authors"><strong>Pervez MN</strong>, Jiang T, Mahato JK, Ilango AK, Kumaran Y, Zuo Y, Zhang W, Feldblyum JI, Yigit MV, Liang Y</div>
+        <div class="pub-journal">ACS ES&amp;T Water, 4 (2024), 2968–2980</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">9</div>
+      <div>
+        <div class="pub-title">Magnetic surfactant-modified clay for enhanced adsorption of PFAS mixtures in snowmelt <span class="pub-badges"><span class="pb pb-cited">Cited 32×</span></span></div>
+        <div class="pub-authors">Jiang T, <strong>Pervez MN*</strong>, Ilango AK, Ravi YK, Zhang W, Feldblyum JI, Yigit MV, Efstathiadis H, Liang Y</div>
+        <div class="pub-journal">Journal of Hazardous Materials, 471 (2024), 134390</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">10</div>
+      <div>
+        <div class="pub-title">Structure and mechanism of nanoengineered membranes toward PFAS removal from water: a critical review <span class="pub-badges"><span class="pb pb-cited">Cited 27×</span></span></div>
+        <div class="pub-authors"><strong>Pervez MN</strong>, Jiang T, Liang Y</div>
+        <div class="pub-journal">Journal of Water Process Engineering, 63 (2024), 105471</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">11</div>
+      <div>
+        <div class="pub-title">Enhanced peroxymonosulfate activation via heteroatomic doping defects in 2D N-doped carbon nanosheets for BPA degradation <span class="pub-badges"><span class="pb pb-hc">Highly Cited</span><span class="pb pb-cited">Cited 108×</span></span></div>
+        <div class="pub-authors">Qu G, Jia P, Tang S, <strong>Pervez MN</strong>, Pang Y, Li B, Cao C, Zhao Y</div>
+        <div class="pub-journal">Journal of Hazardous Materials, 461 (2024), 132626</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-year-group" data-year="2023">
+    <div class="pub-year-label">2023</div>
+
+    <div class="pub-item">
+      <div class="pub-num">12</div>
+      <div>
+        <div class="pub-title">Electrospun nanofiber membrane diameter prediction using combined response surface methodology and machine learning <span class="pub-badges"><span class="pb pb-top">Chemistry Top 100</span><span class="pb pb-cited">Cited 60×</span></span></div>
+        <div class="pub-authors"><strong>Pervez MN</strong>, Yeo WS, Mishu MMR, Talukder ME, Roy H, Islam MS, Zhao Y, Cai Y, Stylios GK, Naddeo V</div>
+        <div class="pub-journal">Scientific Reports, 13 (2023), 9679</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">13</div>
+      <div>
+        <div class="pub-title">The advancement in membrane bioreactor (MBR) technology toward sustainable industrial wastewater management <span class="pub-badges"><span class="pb pb-hc">Highly Cited</span><span class="pb pb-cited">Cited 241×</span></span></div>
+        <div class="pub-authors">Rahman TU, Roy H, Jamil MRI, Tahmid M, Fariha A, Mazumdar A, Tasnim N, <strong>Pervez MN</strong>, Cai Y, Naddeo V</div>
+        <div class="pub-journal">Membranes, 13 (2023), 181</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-year-group" data-year="older">
+    <div class="pub-year-label">2022 &amp; earlier</div>
+
+    <div class="pub-item">
+      <div class="pub-num">14</div>
+      <div>
+        <div class="pub-title">Tuning the structure of cerium-based metal-organic frameworks for efficient removal of arsenic species <span class="pub-badges"><span class="pb pb-cited">Cited 61×</span></span></div>
+        <div class="pub-authors"><strong>Pervez MN</strong>, Chen C, Li Z, Naddeo V, Zhao Y</div>
+        <div class="pub-journal">Chemosphere, 303 (2022), 134934</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">15</div>
+      <div>
+        <div class="pub-title">α-FeOOH quantum dots impregnated graphene oxide hybrids enhanced arsenic adsorption <span class="pub-badges"><span class="pb pb-cited">Cited 78×</span></span></div>
+        <div class="pub-authors"><strong>Pervez MN</strong>, Wei Y, Sun P, Qu G, Naddeo V, Zhao Y</div>
+        <div class="pub-journal">Science of the Total Environment, 781 (2021), 146726</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">16</div>
+      <div>
+        <div class="pub-title">A critical review on nanomaterials membrane bioreactor (NMs-MBR) for wastewater treatment <span class="pub-badges"><span class="pb pb-cited">Cited 138×</span></span></div>
+        <div class="pub-authors"><strong>Pervez MN</strong>, Balakrishnan M, Hasan SW, Choo K-H, Zhao Y, Cai Y, Zarra T, Belgiorno V, Naddeo V</div>
+        <div class="pub-journal">npj Clean Water, 3 (2020), 43</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-num">17</div>
+      <div>
+        <div class="pub-title">Low-temperature synthesis of novel polyvinylalcohol (PVA) nanofibrous membranes for catalytic dye degradation <span class="pub-badges"><span class="pb pb-cited">Cited 93×</span></span></div>
+        <div class="pub-authors"><strong>Pervez MN</strong>, Stylios GK, Liang Y, Ouyang F, Cai Y</div>
+        <div class="pub-journal">Journal of Cleaner Production, 262 (2020), 121301</div>
+        <div class="pub-links"><a class="pub-link" href="https://doi.org" target="_blank">DOI</a></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- end pubList -->
+</section>
+
+<!-- ═══════════════ CV ═══════════════ -->
+<section id="cv" class="page-section">
+  <div class="sec-title">Curriculum vitae</div>
+
+  <div class="cv-section">
+    <h3>Education</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-role">Doctor of Philosophy, Environmental Engineering</div>
+        <div class="tl-org">University of Salerno, Italy</div>
+        <div class="tl-date">Nov 2018 – Jun 2022</div>
+        <div class="tl-desc">Focus: Environmental Chemistry. Project: Application of membrane technology for food industry wastewater treatment and resource recovery. Guest PhD at University of Borås, Sweden (Feb 2020 – Jan 2021).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">Master of Science, Textile Engineering</div>
+        <div class="tl-org">Wuhan Textile University, China</div>
+        <div class="tl-date">Oct 2014 – Jun 2016</div>
+        <div class="tl-desc">Focus: Environmental Chemistry. Class Top 3 Rank. Chinese Government Enterprise Scholarship.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">Bachelor of Science, Textile Engineering</div>
+        <div class="tl-org">Southeast University, Bangladesh</div>
+        <div class="tl-date">Jan 2010 – Mar 2014</div>
+        <div class="tl-desc">Focus: Resource Management and Environmental Sustainability. Class 1st Rank. Vice-Chancellor's Gold Medal.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-section">
+    <h3>Academic positions</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-role">Postdoctoral Research Scholar</div>
+        <div class="tl-org">The Ohio State University, Columbus, OH</div>
+        <div class="tl-date">Nov 2025 – present</div>
+        <div class="tl-desc">Reticular materials (MOFs/COFs) for recovery of critical and rare earth minerals. AI/ML framework for adsorbent performance prediction. Microwave digestion and ICP-OES analysis of coal fly ash.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">Postdoctoral Research Associate</div>
+        <div class="tl-org">SUNY Albany, Albany, NY</div>
+        <div class="tl-date">Mar 2023 – Oct 2025</div>
+        <div class="tl-desc">Advanced materials (MOFs, graphene, clay, electrospun nanofibers) for PFAS removal via adsorption and photocatalysis. EPA 1633-driven SPE analytical technique. LC–MS/MS analysis.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">Research Fellow</div>
+        <div class="tl-org">University of Salerno, Italy</div>
+        <div class="tl-date">Mar 2022 – Feb 2023</div>
+        <div class="tl-desc">Electrospun nanofiber adsorbents/catalysts for dye and critical metal removal and degradation.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">Visiting Research Fellow</div>
+        <div class="tl-org">Bangladesh University of Engineering and Technology</div>
+        <div class="tl-date">Jul 2022 – Aug 2022</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-section">
+    <h3>Technical skills</h3>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4>Synthesis &amp; processing</h4>
+        <div class="skill-tags">
+          <span class="tag">MOF/COF synthesis</span><span class="tag">Electrospinning</span><span class="tag">Sol-gel</span><span class="tag">AOP/ARP</span><span class="tag">Emulsion</span><span class="tag">Thin-film deposition</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Analytical instruments</h4>
+        <div class="skill-tags">
+          <span class="tag">LC–MS/MS</span><span class="tag">ICP-OES</span><span class="tag">SEM</span><span class="tag">XRD</span><span class="tag">FTIR</span><span class="tag">XPS</span><span class="tag">BET</span><span class="tag">TGA</span><span class="tag">DSC</span><span class="tag">NMR</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Computational &amp; data</h4>
+        <div class="skill-tags">
+          <span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">LightGBM</span><span class="tag">ExtraTrees</span><span class="tag">GroupKFold</span><span class="tag">QSPR</span><span class="tag">GitHub</span><span class="tag">Origin Pro</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Environmental processes</h4>
+        <div class="skill-tags">
+          <span class="tag">Adsorption</span><span class="tag">Membrane filtration</span><span class="tag">Photocatalysis</span><span class="tag">Anaerobic digestion</span><span class="tag">SPE (EPA 1633)</span><span class="tag">TEA/LCA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-section">
+    <h3>Funded research projects</h3>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-role">NSF Award GR 139715</div><div class="tl-date">Role: Key personnel (Postdoc)</div></div>
+      <div class="tl-item"><div class="tl-role">NSF Award CBET 2225596</div><div class="tl-date">Role: Key personnel (Postdoc)</div></div>
+      <div class="tl-item"><div class="tl-role">NIH/NIEHS R43ES035334</div><div class="tl-date">Role: Key personnel (Postdoc)</div></div>
+      <div class="tl-item"><div class="tl-role">FuzeHub Jeff Lawrence Innovation Fund (2022-IC-0000000076)</div><div class="tl-date">Role: Key personnel (Postdoc)</div></div>
+      <div class="tl-item"><div class="tl-role">SUNY Technology Accelerator Fund</div><div class="tl-date">Role: Key personnel (Postdoc)</div></div>
+      <div class="tl-item"><div class="tl-role">Italian MUR PRIN 2022PNRR — Innovative Membrane Technologies (CUP B53D23027250001)</div><div class="tl-date">Role: Key personnel (PhD)</div></div>
+    </div>
+  </div>
+
+  <div class="cv-section">
+    <h3>Editorial &amp; academic service</h3>
+    <div style="font-size:.88rem;color:var(--muted);line-height:1.9">
+      Topical Advisory Panel Member, <em>Sustainability</em> &nbsp;·&nbsp;
+      Guest Editor, <em>Water</em> &nbsp;·&nbsp;
+      Associate Guest Editor, <em>Frontiers in Sustainability</em> &nbsp;·&nbsp;
+      Review Editor, <em>Frontiers in Water</em> &nbsp;·&nbsp;
+      216 verified peer reviews (40+ journals) including <em>ES&amp;T</em>, <em>ACS Applied Materials</em>, <em>Water Research</em>, <em>CEJ</em>, <em>Chemosphere</em>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ AWARDS ═══════════════ -->
+<section id="awards" class="page-section">
+  <div class="sec-title">Awards &amp; honors</div>
+  <ul class="awards-list">
+    <li class="award-item">
+      <div class="award-year">2024–now</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">Top 2% Scientists worldwide</div><div class="award-sub">Elsevier &amp; Stanford University, United States</div></div>
+    </li>
+    <li class="award-item">
+      <div class="award-year">Dec 2025</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">2024 Best Paper Award</div><div class="award-sub">ACS ES&amp;T Water, United States</div></div>
+    </li>
+    <li class="award-item">
+      <div class="award-year">Nov 2025</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">Postdoctoral Fellowship</div><div class="award-sub">The Ohio State University, United States</div></div>
+    </li>
+    <li class="award-item">
+      <div class="award-year">Mar 2023</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">Postdoctoral Fellowship</div><div class="award-sub">State University of New York at Albany, United States</div></div>
+    </li>
+    <li class="award-item">
+      <div class="award-year">Mar 2022</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">Type B Research Fellowship</div><div class="award-sub">University of Salerno, Italy</div></div>
+    </li>
+    <li class="award-item">
+      <div class="award-year">Nov 2018</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">Doctoral Excellence Scholarship</div><div class="award-sub">University of Salerno (Project Excellence Departments), Italy</div></div>
+    </li>
+    <li class="award-item">
+      <div class="award-year">Jun 2016</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">Class Top 3 Rank Award Certificate (MSc)</div><div class="award-sub">Wuhan Textile University, China</div></div>
+    </li>
+    <li class="award-item">
+      <div class="award-year">Apr 2016</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">Best Paper Award (Paper ID: 18)</div><div class="award-sub">5th International Conference on Advanced Materials and Engineering Materials, Hong Kong</div></div>
+    </li>
+    <li class="award-item">
+      <div class="award-year">Oct 2014</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">Chinese Government Enterprise Scholarship (MSc)</div><div class="award-sub">Wuhan Textile University, China</div></div>
+    </li>
+    <li class="award-item">
+      <div class="award-year">Dec 2013</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">Vice-Chancellor's Gold Medal (BSc)</div><div class="award-sub">Southeast University, Bangladesh</div></div>
+    </li>
+    <li class="award-item">
+      <div class="award-year">Dec 2013</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">Class 1st Rank Award Certificate (BSc)</div><div class="award-sub">Southeast University, Bangladesh</div></div>
+    </li>
+    <li class="award-item">
+      <div class="award-year">2010–2013</div>
+      <div class="award-dot"></div>
+      <div><div class="award-text">Undergraduate Merit Scholarship</div><div class="award-sub">Southeast University, Bangladesh</div></div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section id="contact" class="page-section">
+  <div class="sec-title">Contact</div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <i class="fas fa-envelope"></i>
+      <div class="label">OSU email</div>
+      <div class="val"><a href="mailto:pervez.15@osu.edu">pervez.15@osu.edu</a></div>
+    </div>
+    <div class="contact-card">
+      <i class="fas fa-envelope-open"></i>
+      <div class="label">Personal email</div>
+      <div class="val"><a href="mailto:pervezmnahid@gmail.com">pervezmnahid@gmail.com</a></div>
+    </div>
+    <div class="contact-card">
+      <i class="fas fa-phone"></i>
+      <div class="label">Phone</div>
+      <div class="val">(518) 956-5755</div>
+    </div>
+    <div class="contact-card">
+      <i class="fas fa-map-marker-alt"></i>
+      <div class="label">Office</div>
+      <div class="val">470 Hitchcock Hall, 2070 Neil Ave<br>Columbus, Ohio 43210</div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="sec-title" style="font-size:1rem">Online profiles</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:.5rem">
+      <a href="https://scholar.google.com" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:1px solid var(--border);border-radius:6px;font-size:.85rem;color:var(--text);text-decoration:none;background:var(--surface)" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'"><i class="fas fa-graduation-cap" style="color:var(--accent)"></i> Google Scholar</a>
+      <a href="https://www.researchgate.net" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:1px solid var(--border);border-radius:6px;font-size:.85rem;color:var(--text);text-decoration:none;background:var(--surface)" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'"><i class="fab fa-researchgate" style="color:var(--accent2)"></i> ResearchGate</a>
+      <a href="https://orcid.org" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:1px solid var(--border);border-radius:6px;font-size:.85rem;color:var(--text);text-decoration:none;background:var(--surface)" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'"><i class="fab fa-orcid" style="color:#a6ce39"></i> ORCID</a>
+      <a href="https://linkedin.com" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:1px solid var(--border);border-radius:6px;font-size:.85rem;color:var(--text);text-decoration:none;background:var(--surface)" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'"><i class="fab fa-linkedin-in" style="color:#0077b5"></i> LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Md. Nahid Pervez &nbsp;·&nbsp;
+  Department of Civil, Environmental, and Geodetic Engineering, The Ohio State University &nbsp;·&nbsp;
+  Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+</footer>
+
+<script>
+function showSection(id, el) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (el) el.classList.add('active');
+  document.getElementById('navLinks').classList.remove('open');
+  window.scrollTo({top:0,behavior:'smooth'});
+  return false;
+}
+
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+function filterPubs(year, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pub-year-group').forEach(g => {
+    if (year === 'all' || g.dataset.year === year) {
+      g.style.display = 'block';
+    } else {
+      g.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
